@@ -1,0 +1,84 @@
+Featured Projects
+Showcasing my expertise in data analysis, machine learning, and full-stack development
+
+Data Visualization of Weather, Agriculture, and Crop Yields
+Data Visualization of Weather, Agriculture, and Crop Yields
+Conducted multi-source data analysis using datasets from ICRISAT, Indian Weather Repository, and crop yield statistics, focusing on correlations between weather variability and agricultural output.
+
+Python
+Pandas
+NumPy
+Google Data Studio
+Power BI
+D3.js
++2 more
+Flip for details
+Data Visualization of Weather, Agriculture, and Crop Yields
+
+About Project
+Conducted multi-source data analysis using datasets from ICRISAT, Indian Weather Repository, and crop yield statistics, focusing on correlations between weather variability and agricultural output.
+
+Key Features
+Integrated datasets from ICRISAT and Indian Weather Repository with crop yield statistics
+Applied statistical correlation analysis and time-series modeling techniques
+Created interactive dashboards visualizing rainfall patterns and pesticide usage
+Enabled comparative crop analysis across different regions
+Identified optimal sowing windows for agricultural planning
+Delivered actionable insights for agricultural policymakers
+Tech Stack
+Python
+Pandas
+NumPy
+Google Data Studio
+Power BI
+D3.js
+VizHub
+Statistical Analysis
+Live Demo
+Movie Recommendation System Using NLP Techniques
+Movie Recommendation System Using NLP Techniques
+Built a personalized movie recommendation system by analyzing large datasets from TMDB and IMDB, incorporating user reviews, metadata, and ratings using advanced NLP techniques.
+
+Python
+Pandas
+NumPy
+TextBlob
+NLTK
+Beautiful Soup
++3 more
+Flip for details
+Movie Recommendation System Using NLP Techniques
+
+About Project
+Built a personalized movie recommendation system by analyzing large datasets from TMDB and IMDB, incorporating user reviews, metadata, and ratings using advanced NLP techniques.
+
+Key Features
+Processed large datasets from TMDB and IMDB with user reviews and metadata
+Implemented content-based filtering using TF-IDF vectorization
+Developed collaborative filtering techniques (user-user and item-item)
+Integrated sentiment analysis into recommendation pipeline
+Enhanced model accuracy through exploratory data analysis
+Created hybrid models for improved recommendation diversity
+Tech Stack
+Python
+Pandas
+NumPy
+TextBlob
+NLTK
+Beautiful Soup
+TF-IDF
+Cosine Similarity
+Machine Learning
+GitHub
+Enhancing Water Body Detection on Satellite Images
+Enhancing Water Body Detection on Satellite Images
+Designed a machine learning and image processing pipeline to accurately detect and segment water bodies from high-resolution satellite imagery using computer vision techniques.
+
+Python
+OpenCV
+Machine Learning
+Image Processing
+HSV Color Space
+Canny Edge Detection
++1 more
+Flip for details
