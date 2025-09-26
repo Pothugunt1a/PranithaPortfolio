@@ -44,8 +44,9 @@ export default function ProjectCard({
   };
 
   const handleGithubClick = () => {
-    console.log(`GitHub clicked for: ${title}`);
-    // todo: remove mock functionality
+    if (githubUrl) {
+      window.open(githubUrl, '_blank');
+    }
   };
 
   return (
