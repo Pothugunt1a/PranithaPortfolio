@@ -30,6 +30,14 @@ export default function ProjectCard({
     console.log(`Flipped project card: ${title}`);
   };
 
+  const handleMouseEnter = () => {
+    setIsFlipped(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsFlipped(false);
+  };
+
   const handleLiveClick = () => {
     console.log(`Live demo clicked for: ${title}`);
     // todo: remove mock functionality
@@ -41,11 +49,15 @@ export default function ProjectCard({
   };
 
   return (
-    <div className="group perspective-1000" style={{ height: '384px' }}>
+    <div 
+      className="group perspective-1000" 
+      style={{ height: '384px' }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
         {/* Front Side */}
         <Card className="absolute inset-0 w-full h-full backface-hidden hover-elevate transition-all duration-300 cursor-pointer overflow-hidden" 
-              onClick={handleFlip}
               data-testid={`card-project-front-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           <div className="relative h-48 overflow-hidden">
             <img
@@ -77,7 +89,7 @@ export default function ProjectCard({
             <div className="flex items-center justify-center pt-4">
               <Button variant="ghost" size="sm" className="hover-elevate">
                 <RotateCw className="w-4 h-4 mr-2" />
-                Flip for details
+                Hover to flip
               </Button>
             </div>
           </div>
@@ -89,14 +101,6 @@ export default function ProjectCard({
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold">{title}</h3>
-              <Button 
-                variant="ghost" 
-                size="icon"
-                onClick={handleFlip}
-                data-testid={`button-flip-back-${title.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                <RotateCw className="w-4 h-4" />
-              </Button>
             </div>
             
             <div className="space-y-4 flex-1">
