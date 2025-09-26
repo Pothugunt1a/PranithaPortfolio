@@ -332,6 +332,7 @@
     perspective: 1000px;
     width: 100%;
     height: 100%;
+    position: relative;
   }
 
   .preserve-3d {
@@ -340,10 +341,12 @@
     width: 100%;
     height: 100%;
     position: relative;
+    will-change: transform;
   }
 
   .backface-hidden {
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .rotate-y-180 {

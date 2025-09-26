@@ -50,12 +50,24 @@ export default function ProjectCard({
 
   return (
     <div 
-      className="group perspective-1000" 
-      style={{ height: '384px' }}
+      className="group perspective-1000 relative" 
+      style={{ 
+        height: '384px',
+        minHeight: '384px',
+        maxHeight: '384px',
+        isolation: 'isolate'
+      }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
+      <div 
+        className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
+        style={{
+          position: 'relative',
+          transformStyle: 'preserve-3d',
+          transformOrigin: 'center center'
+        }}
+      >
         {/* Front Side */}
         <Card className="absolute inset-0 w-full h-full backface-hidden hover-elevate transition-all duration-300 cursor-pointer overflow-hidden" 
               data-testid={`card-project-front-${title.toLowerCase().replace(/\s+/g, '-')}`}>
