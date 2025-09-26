@@ -175,11 +175,11 @@ export default function ExperienceSection() {
                               <Calendar className="w-4 h-4" />
                               <span>{exp.period}</span>
                             </div>
-                            <span className="hidden sm:inline">•</span>
+                            {/* <span className="hidden sm:inline">•</span>
                             <div className="flex items-center gap-1">
                               <MapPin className="w-4 h-4" />
                               <span>{exp.location}</span>
-                            </div>
+                            </div> */}
                           </div>
 
                           <p className="text-primary font-medium">
