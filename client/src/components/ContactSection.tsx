@@ -69,8 +69,7 @@ export default function ContactSection() {
   const handleContactClick = (href: string | null, label: string) => {
     if (href) {
       console.log(`Contact clicked: ${label} - ${href}`);
-      // todo: remove mock functionality
-      // In the real app, this would open the link
+      window.open(href, '_blank');
     }
   };
 
@@ -93,8 +92,13 @@ export default function ContactSection() {
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card className="p-6 space-y-4 hover-elevate border-2 border-primary/10">
               <div className="text-center mb-4">
-                <h3 className="text-xl font-bold">Get In Touch</h3>
-                <p className="text-muted-foreground mt-1">Let's connect and discuss opportunities</p>
+                <div className="w-20 h-20 mx-auto mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/handshake--unscreen_1758909428681.gif" 
+                    alt="Handshake animation"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               </div>
               <div className="space-y-3">
                 {contactInfo.map((contact, index) => (
@@ -184,7 +188,7 @@ export default function ContactSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                onClick={() => handleContactClick("mailto:p.pranitha0015@gmail.com", "Email")}
+                onClick={() => window.open("mailto:p.pranitha0015@gmail.com", '_blank')}
                 data-testid="button-contact-primary"
                 className="hover-elevate bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
               >
