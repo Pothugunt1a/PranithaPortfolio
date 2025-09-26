@@ -41,8 +41,8 @@ export default function ProjectCard({
   };
 
   return (
-    <div className="group perspective-1000">
-      <div className={`relative w-full h-96 transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
+    <div className="group perspective-1000 h-96">
+      <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`} style={{ transformOrigin: 'center center' }}>
         {/* Front Side */}
         <Card className="absolute inset-0 w-full h-full backface-hidden hover-elevate transition-all duration-300 cursor-pointer overflow-hidden" 
               onClick={handleFlip}
