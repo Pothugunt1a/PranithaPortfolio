@@ -28,7 +28,6 @@ export default function ProjectsSection() {
         "Identified optimal sowing windows for agricultural planning",
         "Delivered actionable insights for agricultural policymakers",
       ],
-      liveUrl: "https://example.com/weather-agriculture",
     },
     {
       title: "Movie Recommendation System Using NLP Techniques",
@@ -54,7 +53,6 @@ export default function ProjectsSection() {
         "Enhanced model accuracy through exploratory data analysis",
         "Created hybrid models for improved recommendation diversity",
       ],
-      githubUrl: "https://github.com/example/movie-recommendation",
     },
     {
       title: "Enhancing Water Body Detection on Satellite Images",
