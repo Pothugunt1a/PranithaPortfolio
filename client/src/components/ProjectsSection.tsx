@@ -3,8 +3,18 @@ import weatherDashboard from "@assets/generated_images/Weather_agriculture_data_
 import movieRecommendation from "@assets/generated_images/Movie_recommendation_system_UI_630af7b4.png";
 import waterDetection from "@assets/generated_images/Water_body_detection_interface_5f8541fe.png";
 
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  achievements: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+}
+
 export default function ProjectsSection() {
-  const projects = [
+  const projects: Project[] = [
     {
       title: "Data Visualization of Weather, Agriculture, and Crop Yields",
       description:

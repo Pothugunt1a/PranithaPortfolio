@@ -9,7 +9,7 @@ interface HeroSectionProps {
 export default function HeroSection({ scrollToSection }: HeroSectionProps) {
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = '/PranithaP.pdf';
     link.download = 'Pranitha_Pothuguntla_Resume.pdf';
     document.body.appendChild(link);
     link.click();
