@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import weatherDashboard from "@assets/generated_images/Weather_agriculture_data_dashboard_5df765f3.png";
@@ -108,7 +109,7 @@ export default function ProjectsSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Stagger project cards
+        staggerChildren: 0.2,
       },
     },
   };
