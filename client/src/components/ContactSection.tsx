@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Mail, Github, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Mail, Github, Phone, ExternalLink, Linkedin } from "lucide-react";
 
 export default function ContactSection() {
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "pranithapothuguntla16@gmail.com",
-      href: "mailto:pranithapothuguntla16@gmail.com"
+      value: "p.pranitha0015@gmail.com",
+      href: "mailto:p.pranitha0015@gmail.com"
     },
     {
       icon: Phone,
@@ -19,14 +19,14 @@ export default function ContactSection() {
     {
       icon: Github,
       label: "GitHub",
-      value: "GitHub Profile",
-      href: "https://github.com"
+      value: "Pothugunt1a",
+      href: "https://github.com/Pothugunt1a"
     },
     {
-      icon: MapPin,
-      label: "Location",
-      value: "Available for Remote Work",
-      href: null
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "Connect with me",
+      href: "https://www.linkedin.com/in/pranitha-p-212849198/"
     }
   ];
 
@@ -56,28 +56,28 @@ export default function ContactSection() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="p-8 space-y-6">
-              <h3 className="text-2xl font-bold">Contact Information</h3>
-              <div className="space-y-4">
+            <Card className="p-8 space-y-6 hover-elevate">
+              <h3 className="text-2xl font-bold text-center mb-8">Contact Information</h3>
+              <div className="space-y-6">
                 {contactInfo.map((contact, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <contact.icon className="w-5 h-5 text-primary" />
+                  <div key={index} className="group flex items-center gap-6 p-4 rounded-lg hover:bg-muted/50 transition-all duration-200">
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary/20 to-primary/10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                      <contact.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm text-muted-foreground">{contact.label}</p>
+                      <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">{contact.label}</p>
                       {contact.href ? (
                         <Button
                           variant="ghost"
-                          className="p-0 h-auto font-medium text-left justify-start hover-elevate"
+                          className="p-0 h-auto font-semibold text-base text-left justify-start hover-elevate mt-1"
                           onClick={() => handleContactClick(contact.href, contact.label)}
                           data-testid={`button-contact-${contact.label.toLowerCase()}`}
                         >
                           {contact.value}
-                          <ExternalLink className="w-3 h-3 ml-1" />
+                          <ExternalLink className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                         </Button>
                       ) : (
-                        <p className="font-medium">{contact.value}</p>
+                        <p className="font-semibold text-base mt-1">{contact.value}</p>
                       )}
                     </div>
                   </div>
@@ -121,7 +121,7 @@ export default function ContactSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                onClick={() => handleContactClick("mailto:pranithapothuguntla16@gmail.com", "Email")}
+                onClick={() => handleContactClick("mailto:p.pranitha0015@gmail.com", "Email")}
                 data-testid="button-contact-primary"
                 className="hover-elevate"
               >
