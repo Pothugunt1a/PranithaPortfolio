@@ -80,40 +80,40 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-16">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-bold mb-3">Get In Touch</h2>
             <p className="text-xl text-muted-foreground">
               I'm currently open to new opportunities. Reach out via email or connect on social media.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="p-8 space-y-6 hover-elevate border-2 border-primary/10">
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-8 h-8 text-white" />
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <Card className="p-6 space-y-4 hover-elevate border-2 border-primary/10">
+              <div className="text-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Mail className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold">Get In Touch</h3>
-                <p className="text-muted-foreground mt-2">Let's connect and discuss opportunities</p>
+                <h3 className="text-xl font-bold">Get In Touch</h3>
+                <p className="text-muted-foreground mt-1">Let's connect and discuss opportunities</p>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {contactInfo.map((contact, index) => (
                   <div key={index} className="group">
                     {contact.isCopy ? (
                       <Button
                         variant="outline"
-                        className="w-full flex items-center gap-4 p-6 h-auto border-2 hover:border-primary/50 transition-all duration-200"
+                        className="w-full flex items-center gap-3 p-4 h-auto border-2 hover:border-primary/50 transition-all duration-200"
                         onClick={handleCopyEmail}
                         data-testid="button-copy-email"
                       >
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500/20 to-blue-600/10 rounded-xl flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-blue-600/10 rounded-xl flex items-center justify-center">
                           {emailCopied ? (
-                            <Check className="w-6 h-6 text-green-600" />
+                            <Check className="w-5 h-5 text-green-600" />
                           ) : (
-                            <Copy className="w-6 h-6 text-blue-600" />
+                            <Copy className="w-5 h-5 text-blue-600" />
                           )}
                         </div>
                         <div className="flex-1 text-left">
@@ -127,16 +127,16 @@ export default function ContactSection() {
                     ) : (
                       <Button
                         variant="outline"
-                        className="w-full flex items-center gap-4 p-6 h-auto border-2 hover:border-primary/50 transition-all duration-200"
+                        className="w-full flex items-center gap-3 p-4 h-auto border-2 hover:border-primary/50 transition-all duration-200"
                         onClick={() => handleContactClick(contact.href, contact.label)}
                         data-testid={`button-contact-${contact.label.toLowerCase()}`}
                       >
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                           contact.icon === Linkedin 
                             ? 'bg-gradient-to-r from-blue-600/20 to-blue-700/10' 
                             : 'bg-gradient-to-r from-gray-800/20 to-gray-900/10'
                         }`}>
-                          <contact.icon className={`w-6 h-6 ${
+                          <contact.icon className={`w-5 h-5 ${
                             contact.icon === Linkedin ? 'text-blue-600' : 'text-gray-700'
                           }`} />
                         </div>
@@ -152,33 +152,33 @@ export default function ContactSection() {
               </div>
             </Card>
 
-            <Card className="p-8 space-y-6 hover-elevate border-2 border-primary/10">
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-primary/80 to-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Settings className="w-8 h-8 text-white" />
+            <Card className="p-6 space-y-4 hover-elevate border-2 border-primary/10">
+              <div className="text-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-primary/80 to-primary rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Settings className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold">Let's Work Together</h3>
-                <p className="text-muted-foreground mt-2">
+                <h3 className="text-xl font-bold">Let's Work Together</h3>
+                <p className="text-muted-foreground mt-1">
                   I'm passionate about building scalable applications and solving complex 
                   problems through code. Whether you're looking for:
                 </p>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {skills.map((skill, index) => (
-                  <div key={index} className="group p-4 rounded-lg hover:bg-muted/50 transition-all duration-200">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
-                        <skill.icon className="w-5 h-5 text-primary" />
+                  <div key={index} className="group p-3 rounded-lg hover:bg-muted/50 transition-all duration-200">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
+                        <skill.icon className="w-4 h-4 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-base mb-1">{skill.title}</h4>
-                        <p className="text-sm text-muted-foreground">{skill.description}</p>
+                        <h4 className="font-semibold text-sm mb-1">{skill.title}</h4>
+                        <p className="text-xs text-muted-foreground">{skill.description}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="pt-4 border-t border-border/50">
+              <div className="pt-3 border-t border-border/50">
                 <p className="text-center text-muted-foreground font-medium">
                   I'd love to discuss how my expertise can contribute to your team's success.
                 </p>
