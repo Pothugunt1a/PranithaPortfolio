@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +14,7 @@ import {
 export default function ExperienceSection() {
   const prefersReducedMotion = useReducedMotion();
   const { ref, isInView } = useInView(0.1);
-  
+
   const experiences = [
     {
       title: "Software Developer",
@@ -42,7 +41,6 @@ export default function ExperienceSection() {
         "Docker",
         "GitHub Actions",
       ],
-      highlight: "current",
     },
     {
       title: "Senior Software Developer",
@@ -67,7 +65,6 @@ export default function ExperienceSection() {
         "PHP",
         "Bootstrap",
       ],
-      highlight: "senior",
     },
     {
       title: "Software Developer Executive",
@@ -84,7 +81,6 @@ export default function ExperienceSection() {
         "Managed Vtiger CRM reducing operational overhead by 25%",
       ],
       technologies: ["TypeScript", "React.js", "ES6+", "Vtiger CRM"],
-      highlight: "executive",
     },
     {
       title: "Software Developer Intern",
@@ -101,43 +97,12 @@ export default function ExperienceSection() {
         "Delivered 40% reduction in manual update time for customer management",
       ],
       technologies: ["TypeScript", "Flask", "Python", "PostgreSQL", "Power BI"],
-      highlight: "internship",
     },
   ];
 
   // Get variants based on motion preferences
   const headerVariants = prefersReducedMotion ? getReducedMotionVariants(staggerContainer) : staggerContainer;
   const cardVariants = prefersReducedMotion ? getReducedMotionVariants(scaleInVariants) : scaleInVariants;
-
-  const getHighlightColor = (highlight: string) => {
-    switch (highlight) {
-      case 'current':
-        return 'border-green-500/50 bg-green-50/50 dark:bg-green-950/20';
-      case 'senior':
-        return 'border-blue-500/50 bg-blue-50/50 dark:bg-blue-950/20';
-      case 'executive':
-        return 'border-purple-500/50 bg-purple-50/50 dark:bg-purple-950/20';
-      case 'internship':
-        return 'border-orange-500/50 bg-orange-50/50 dark:bg-orange-950/20';
-      default:
-        return 'border-border';
-    }
-  };
-
-  const getHighlightBadge = (highlight: string) => {
-    switch (highlight) {
-      case 'current':
-        return <Badge variant="default" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">Current</Badge>;
-      case 'senior':
-        return <Badge variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">Senior Role</Badge>;
-      case 'executive':
-        return <Badge variant="secondary" className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100">Executive</Badge>;
-      case 'internship':
-        return <Badge variant="outline" className="border-orange-500 text-orange-700 dark:text-orange-300">Internship</Badge>;
-      default:
-        return null;
-    }
-  };
 
   return (
     <motion.section 
@@ -184,7 +149,7 @@ export default function ExperienceSection() {
                 className="h-full"
               >
                 <Card
-                  className={`p-8 h-full hover:shadow-xl transition-all duration-300 border-2 ${getHighlightColor(exp.highlight)}`}
+                  className="p-8 h-full hover:shadow-xl transition-all duration-300 border border-border"
                   data-testid={`card-experience-${index}`}
                 >
                   <div className="space-y-6 h-full flex flex-col">
@@ -192,10 +157,7 @@ export default function ExperienceSection() {
                     <div className="space-y-4">
                       <div className="flex items-start justify-between gap-4">
                         <div className="space-y-2 flex-1">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="text-2xl font-bold">{exp.title}</h3>
-                            {getHighlightBadge(exp.highlight)}
-                          </div>
+                          <h3 className="text-2xl font-bold">{exp.title}</h3>
                           <div className="flex items-center gap-2 text-muted-foreground">
                             <Building className="w-4 h-4" />
                             <span className="font-medium">{exp.company}</span>
@@ -265,34 +227,6 @@ export default function ExperienceSection() {
                 </Card>
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* Experience Summary */}
-          <motion.div
-            className="mt-16 text-center"
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={fadeUpVariants}
-          >
-            <Card className="p-8 bg-primary/5 border-primary/20">
-              <motion.div 
-                className="grid grid-cols-1 md:grid-cols-3 gap-8"
-                variants={staggerContainer}
-              >
-                <motion.div variants={fadeUpVariants} className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">4+</div>
-                  <div className="text-muted-foreground">Years of Experience</div>
-                </motion.div>
-                <motion.div variants={fadeUpVariants} className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">100+</div>
-                  <div className="text-muted-foreground">Projects Completed</div>
-                </motion.div>
-                <motion.div variants={fadeUpVariants} className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">15+</div>
-                  <div className="text-muted-foreground">Technologies Mastered</div>
-                </motion.div>
-              </motion.div>
-            </Card>
           </motion.div>
         </div>
       </div>
