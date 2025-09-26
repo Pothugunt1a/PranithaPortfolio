@@ -109,7 +109,7 @@ export default function ContactSection() {
               <div className="text-center mb-4">
                 <div className="w-20 h-20 mx-auto mb-3 flex items-center justify-center">
                   <img
-                    src="/attached_assets/handshake--unscreen_1758909428681.gif"
+                    src="/handshake.gif"
                     alt="Handshake animation"
                     className="w-full h-full object-contain"
                   />
