@@ -85,9 +85,7 @@ export default function Footer() {
                   </Button>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground">
-                Available for remote opportunities and collaborations
-              </p>
+              
             </div>
           </div>
 
