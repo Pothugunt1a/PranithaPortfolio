@@ -1,7 +1,16 @@
+import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import weatherDashboard from "@assets/generated_images/Weather_agriculture_data_dashboard_5df765f3.png";
 import movieRecommendation from "@assets/generated_images/Movie_recommendation_system_UI_630af7b4.png";
 import waterDetection from "@assets/generated_images/Water_body_detection_interface_5f8541fe.png";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useInView } from "@/lib/animations";
+import { 
+  staggerContainer, 
+  fadeUpVariants,
+  scaleInVariants,
+  getReducedMotionVariants 
+} from "@/lib/animations";
 
 interface Project {
   title: string;
@@ -14,6 +23,9 @@ interface Project {
 }
 
 export default function ProjectsSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const { ref, isInView } = useInView(0.1);
+  
   const projects: Project[] = [
     {
       title: "Data Visualization of Weather, Agriculture, and Crop Yields",
@@ -90,34 +102,80 @@ export default function ProjectsSection() {
     },
   ];
 
+  // Create staggered variants for project cards
+  const projectStaggerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Stagger project cards
+      },
+    },
+  };
+
+  // Get variants based on motion preferences
+  const headerVariants = prefersReducedMotion ? getReducedMotionVariants(staggerContainer) : staggerContainer;
+  const cardContainerVariants = prefersReducedMotion ? getReducedMotionVariants(projectStaggerVariants) : projectStaggerVariants;
+  const cardVariants = prefersReducedMotion ? getReducedMotionVariants(scaleInVariants) : scaleInVariants;
+
   return (
-    <section id="projects" className="py-24">
+    <motion.section 
+      id="projects" 
+      className="py-24 relative"
+      ref={ref}
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-xl text-muted-foreground">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={headerVariants}
+          >
+            <motion.h2 
+              className="text-4xl font-bold mb-4"
+              variants={fadeUpVariants}
+            >
+              Featured Projects
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-muted-foreground"
+              variants={fadeUpVariants}
+            >
               Showcasing my expertise in data analysis, machine learning, and
               full-stack development
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={cardContainerVariants}
+          >
             {projects.map((project, index) => (
-              <ProjectCard
+              <motion.div
                 key={index}
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                technologies={project.technologies}
-                achievements={project.achievements}
-                liveUrl={project.liveUrl}
-                githubUrl={project.githubUrl}
-              />
+                variants={cardVariants}
+                whileHover={prefersReducedMotion ? {} : {
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+              >
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  technologies={project.technologies}
+                  achievements={project.achievements}
+                  liveUrl={project.liveUrl}
+                  githubUrl={project.githubUrl}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
