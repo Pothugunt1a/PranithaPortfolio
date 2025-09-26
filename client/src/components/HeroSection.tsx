@@ -12,6 +12,7 @@ import {
   getReducedMotionVariants 
 } from "@/lib/animations";
 import { useRef } from "react";
+import TypingAnimation from "./TypingAnimation";
 
 interface HeroSectionProps {
   scrollToSection: (section: string) => void;
@@ -75,17 +76,24 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
                 className="text-xl lg:text-2xl text-muted-foreground"
                 variants={fadeUpVariants}
               >
-                I build scalable applications, APIs, and cloud-native solutions with over{" "}
-                <span className="text-primary font-semibold">3+ years of experience</span>
+                <TypingAnimation 
+                  text="I build scalable applications, APIs, and cloud-native solutions with over 3+ years of experience"
+                  delay={800}
+                  speed={30}
+                  showCursor={false}
+                />
               </motion.div>
-              <motion.p 
+              <motion.div 
                 className="text-lg text-muted-foreground max-w-2xl"
                 variants={fadeUpVariants}
               >
-                Software Developer and Data Analyst specializing in full-stack development, 
-                cloud architecture, and data-driven solutions. Experienced in Java, Python, 
-                JavaScript, and modern cloud platforms.
-              </motion.p>
+                <TypingAnimation 
+                  text="Software Developer and Data Analyst specializing in full-stack development, cloud architecture, and data-driven solutions. Experienced in Java, Python, JavaScript, and modern cloud platforms."
+                  delay={3500}
+                  speed={25}
+                  showCursor={false}
+                />
+              </motion.div>
             </div>
             
             <motion.div 
