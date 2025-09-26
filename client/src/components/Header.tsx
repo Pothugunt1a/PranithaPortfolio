@@ -36,14 +36,10 @@ export default function Header({ scrollToSection }: HeaderProps) {
             <Button
               variant="ghost"
               onClick={() => scrollToSection('hero')}
-              className="p-2 hover-elevate transition-all duration-300 hover:scale-105"
+              className="text-xl font-bold hover-elevate transition-all duration-300 hover:scale-105"
               data-testid="button-logo"
             >
-              <img 
-                src="/logo.png" 
-                alt="Pranitha Pothuguntla Logo" 
-                className="h-10 w-10 object-contain"
-              />
+              Pranitha Pothuguntla
             </Button>
           </motion.div>
           
