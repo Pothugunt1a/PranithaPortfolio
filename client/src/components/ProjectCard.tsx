@@ -106,14 +106,14 @@ export default function ProjectCard({
         </Card>
 
         {/* Back Side */}
-        <Card className="absolute inset-0 w-full h-full backface-hidden rotate-y-180" 
+        <Card className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 overflow-hidden" 
               data-testid={`card-project-back-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           <div className="p-6 h-full flex flex-col">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4 flex-shrink-0">
               <h3 className="text-xl font-bold">{title}</h3>
             </div>
             
-            <div className="space-y-4 flex-1">
+            <div className="space-y-4 flex-1 overflow-y-auto min-h-0">
               <div>
                 <h4 className="font-semibold mb-2">About Project</h4>
                 <p className="text-sm text-muted-foreground">{description}</p>
@@ -122,28 +122,39 @@ export default function ProjectCard({
               <div>
                 <h4 className="font-semibold mb-2">Key Features</h4>
                 <ul className="space-y-1">
-                  {achievements.map((achievement, index) => (
+                  {achievements.slice(0, 4).map((achievement, index) => (
                     <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
                       <span>{achievement}</span>
                     </li>
                   ))}
+                  {achievements.length > 4 && (
+                    <li className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                      <span>+{achievements.length - 4} more features...</span>
+                    </li>
+                  )}
                 </ul>
               </div>
               
               <div>
                 <h4 className="font-semibold mb-2">Tech Stack</h4>
                 <div className="flex flex-wrap gap-1">
-                  {technologies.map((tech) => (
+                  {technologies.slice(0, 8).map((tech) => (
                     <Badge key={tech} variant="secondary" className="text-xs">
                       {tech}
                     </Badge>
                   ))}
+                  {technologies.length > 8 && (
+                    <Badge variant="outline" className="text-xs">
+                      +{technologies.length - 8} more
+                    </Badge>
+                  )}
                 </div>
               </div>
             </div>
             
-            <div className="flex gap-2 pt-4 border-t">
+            <div className="flex gap-2 pt-4 border-t flex-shrink-0">
               {liveUrl && (
                 <Button 
                   size="sm" 
