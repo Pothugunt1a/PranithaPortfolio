@@ -109,9 +109,13 @@ export default function ContactSection() {
               <div className="text-center mb-4">
                 <div className="w-20 h-20 mx-auto mb-3 flex items-center justify-center">
                   <img
-                    src="/handshake.gif"
+                    src="/handshake.gif?v=1"
                     alt="Handshake animation"
                     className="w-full h-full object-contain"
+                    onError={(e) => {
+                      console.log('Failed to load handshake gif');
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
                 </div>
               </div>
