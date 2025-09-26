@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, RotateCw } from "lucide-react";
 import { useState, useRef } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { imageMaskVariants, getReducedMotionVariants } from "@/lib/animations";
+import { getReducedMotionVariants } from "@/lib/animations";
 
 interface ProjectCardProps {
   title: string;
@@ -76,7 +76,7 @@ export default function ProjectCard({
     }
   };
 
-  const maskVariants = prefersReducedMotion ? getReducedMotionVariants(imageMaskVariants) : imageMaskVariants;
+  
 
   return (
     <motion.div 
@@ -116,21 +116,11 @@ export default function ProjectCard({
         <Card className="absolute inset-0 w-full h-full backface-hidden cursor-pointer overflow-hidden shadow-lg" 
               data-testid={`card-project-front-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           <div className="relative h-48 overflow-hidden">
-            <motion.div
-              className="relative w-full h-full"
-              initial="hidden"
-              animate={isHovered ? "visible" : "hidden"}
-              variants={maskVariants}
-            >
-              <img
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover transition-transform duration-500"
-                style={{
-                  transform: prefersReducedMotion ? 'none' : isHovered ? 'scale(1.1) rotate(1deg)' : 'scale(1)'
-                }}
-              />
-            </motion.div>
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <motion.div 
               className="absolute bottom-4 left-4 right-4"
