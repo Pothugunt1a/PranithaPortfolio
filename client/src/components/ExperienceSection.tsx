@@ -1,7 +1,8 @@
+
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building, Calendar, MapPin, Award } from "lucide-react";
+import { Building, Calendar, MapPin } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useInView } from "@/lib/animations";
 import { 
@@ -29,8 +30,6 @@ export default function ExperienceSection() {
         "Built backend services with Python/Flask and PostgreSQL for high query performance",
         "Integrated APIs with GraphQL (Apollo Server) to reduce latency and streamline processing",
         "Implemented JWT-based authentication and automated data ingestion pipelines",
-        "Applied test automation frameworks and optimized API calls with pagination and caching",
-        "Implemented CI/CD workflows with GitHub Actions, improving release frequency",
       ],
       technologies: [
         "Python",
@@ -39,7 +38,6 @@ export default function ExperienceSection() {
         "PostgreSQL",
         "GCP",
         "Docker",
-        "GitHub Actions",
       ],
     },
     {
@@ -54,8 +52,6 @@ export default function ExperienceSection() {
         "Built responsive UI components with React Hooks and efficient state management",
         "Integrated RESTful APIs across multi-cloud environments for scalable applications",
         "Enhanced SEO performance by 25% and increased user engagement by 40%",
-        "Collaborated with 5 developers to decrease bug rates by 40%",
-        "Managed hosting and deployment for 15+ domains on GoDaddy",
       ],
       technologies: [
         "React.js",
@@ -78,7 +74,6 @@ export default function ExperienceSection() {
         "Built dynamic, real-time dashboards with React.js and backend integrations",
         "Engineered custom chatbots using TypeScript for client-specific needs",
         "Enhanced website performance by 40% decrease in page load times",
-        "Managed Vtiger CRM reducing operational overhead by 25%",
       ],
       technologies: ["TypeScript", "React.js", "ES6+", "Vtiger CRM"],
     },
@@ -94,7 +89,6 @@ export default function ExperienceSection() {
         "Built RESTful API endpoints for CRUD operations and data processing",
         "Implemented JWT authentication and role-based access control",
         "Connected APIs to Power BI dashboard for data visualization",
-        "Delivered 40% reduction in manual update time for customer management",
       ],
       technologies: ["TypeScript", "Flask", "Python", "PostgreSQL", "Power BI"],
     },
@@ -111,7 +105,7 @@ export default function ExperienceSection() {
       ref={ref}
     >
       <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.div 
             className="text-center mb-16"
             initial="hidden"
@@ -132,102 +126,106 @@ export default function ExperienceSection() {
             </motion.p>
           </motion.div>
 
-          <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                whileHover={prefersReducedMotion ? {} : { 
-                  y: -8,
-                  transition: { duration: 0.3 }
-                }}
-                className="h-full"
-              >
-                <Card
-                  className="p-8 h-full hover:shadow-xl transition-all duration-300 border border-border"
-                  data-testid={`card-experience-${index}`}
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border hidden md:block"></div>
+
+            <motion.div 
+              className="space-y-8"
+              variants={staggerContainer}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  variants={cardVariants}
+                  className="relative flex items-start gap-8"
                 >
-                  <div className="space-y-6 h-full flex flex-col">
-                    {/* Header */}
-                    <div className="space-y-4">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="space-y-2 flex-1">
-                          <h3 className="text-2xl font-bold">{exp.title}</h3>
-                          <div className="flex items-center gap-2 text-muted-foreground">
-                            <Building className="w-4 h-4" />
-                            <span className="font-medium">{exp.company}</span>
+                  {/* Timeline dot */}
+                  <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background z-10 hidden md:block"></div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 md:ml-16">
+                    <motion.div
+                      whileHover={prefersReducedMotion ? {} : { 
+                        y: -4,
+                        transition: { duration: 0.3 }
+                      }}
+                    >
+                      <Card
+                        className="p-6 hover:shadow-lg transition-all duration-300"
+                        data-testid={`card-experience-${index}`}
+                      >
+                        <div className="space-y-4">
+                          {/* Header */}
+                          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                            <div>
+                              <h3 className="text-xl font-bold mb-1">{exp.title}</h3>
+                              <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                                <Building className="w-4 h-4" />
+                                <span className="font-medium">{exp.company}</span>
+                              </div>
+                            </div>
+                            <Badge variant="outline" className="self-start">{exp.type}</Badge>
+                          </div>
+
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4" />
+                              <span>{exp.period}</span>
+                            </div>
+                            <span className="hidden sm:inline">•</span>
+                            <div className="flex items-center gap-1">
+                              <MapPin className="w-4 h-4" />
+                              <span>{exp.location}</span>
+                            </div>
+                          </div>
+
+                          <p className="text-primary font-medium">
+                            {exp.description}
+                          </p>
+
+                          {/* Achievements */}
+                          <div className="space-y-2">
+                            <h4 className="font-semibold text-sm">Key Achievements</h4>
+                            <ul className="space-y-1">
+                              {exp.achievements.map((achievement, achIndex) => (
+                                <li
+                                  key={achIndex}
+                                  className="flex items-start gap-2 text-sm text-muted-foreground"
+                                >
+                                  <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                                  <span>{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Technologies */}
+                          <div className="space-y-2">
+                            <h4 className="font-semibold text-sm">Technologies Used</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {exp.technologies.map((tech) => (
+                                <Badge
+                                  key={tech}
+                                  variant="secondary"
+                                  className="text-xs"
+                                  data-testid={`badge-exp-tech-${tech.toLowerCase().replace(".", "")}`}
+                                >
+                                  {tech}
+                                </Badge>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                        <Badge variant="outline" className="whitespace-nowrap">{exp.type}</Badge>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          <span>{exp.period}</span>
-                        </div>
-                        <span className="hidden sm:inline">•</span>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4" />
-                          <span>{exp.location}</span>
-                        </div>
-                      </div>
-
-                      <p className="text-lg font-medium text-primary">
-                        {exp.description}
-                      </p>
-                    </div>
-
-                    {/* Achievements */}
-                    <div className="space-y-4 flex-1">
-                      <div className="flex items-center gap-2">
-                        <Award className="w-4 h-4 text-primary" />
-                        <h4 className="font-semibold">Key Achievements</h4>
-                      </div>
-                      <ul className="space-y-2">
-                        {exp.achievements.slice(0, 4).map((achievement, achIndex) => (
-                          <li
-                            key={achIndex}
-                            className="flex items-start gap-3 text-sm text-muted-foreground"
-                          >
-                            <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                        {exp.achievements.length > 4 && (
-                          <li className="text-sm text-muted-foreground/70 italic">
-                            +{exp.achievements.length - 4} more achievements
-                          </li>
-                        )}
-                      </ul>
-                    </div>
-
-                    {/* Technologies */}
-                    <div className="space-y-3 mt-auto">
-                      <h4 className="font-semibold text-sm">Technologies Used</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.technologies.map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="secondary"
-                            className="text-xs"
-                            data-testid={`badge-exp-tech-${tech.toLowerCase().replace(".", "")}`}
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
+                      </Card>
+                    </motion.div>
                   </div>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
     </motion.section>
