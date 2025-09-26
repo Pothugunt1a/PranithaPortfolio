@@ -88,8 +88,12 @@ export default function ContactSection() {
   };
 
   const handleDownloadResume = () => {
-    console.log("Download resume clicked from contact section");
-    // todo: remove mock functionality
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Pranitha_Pothuguntla_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
