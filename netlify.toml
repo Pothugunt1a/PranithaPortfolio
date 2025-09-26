@@ -1,0 +1,27 @@
+[build]
+  # Directory to change to before starting a build
+  base = "."
+  # Directory that contains the deploy-ready HTML files and assets
+  publish = "client/dist"
+  # Build command for the frontend
+  command = "npm run build:frontend"
+
+# Redirect all routes to index.html for React Router
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for better performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
