@@ -54,8 +54,7 @@ export default function ProjectCard({
       style={{ 
         height: '384px',
         minHeight: '384px',
-        maxHeight: '384px',
-        isolation: 'isolate'
+        maxHeight: '384px'
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -63,13 +62,12 @@ export default function ProjectCard({
       <div 
         className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
         style={{
-          position: 'relative',
           transformStyle: 'preserve-3d',
           transformOrigin: 'center center'
         }}
       >
         {/* Front Side */}
-        <Card className="absolute inset-0 w-full h-full backface-hidden hover-elevate transition-all duration-300 cursor-pointer overflow-hidden" 
+        <Card className="absolute inset-0 w-full h-full backface-hidden cursor-pointer overflow-hidden" 
               data-testid={`card-project-front-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           <div className="relative h-48 overflow-hidden">
             <img
@@ -99,7 +97,7 @@ export default function ProjectCard({
             </div>
             
             <div className="flex items-center justify-center pt-4">
-              <Button variant="ghost" size="sm" className="hover-elevate">
+              <Button variant="ghost" size="sm">
                 <RotateCw className="w-4 h-4 mr-2" />
                 Hover to flip
               </Button>
@@ -108,7 +106,7 @@ export default function ProjectCard({
         </Card>
 
         {/* Back Side */}
-        <Card className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 hover-elevate transition-all duration-300" 
+        <Card className="absolute inset-0 w-full h-full backface-hidden rotate-y-180" 
               data-testid={`card-project-back-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between mb-4">
