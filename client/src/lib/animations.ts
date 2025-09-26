@@ -229,6 +229,22 @@ export const projectCardHover = {
   },
 };
 
+// Slide in animations for contact section
+export const slideInVariants: Variants = {
+  hidden: {
+    x: -30,
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: animationConfig.duration.normal,
+      ease: animationConfig.ease.smooth,
+    },
+  },
+};
+
 // Contact section split animations
 export const contactSplitVariants: Variants = {
   hidden: { opacity: 0 },

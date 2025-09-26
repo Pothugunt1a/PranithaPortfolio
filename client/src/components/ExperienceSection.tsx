@@ -1,15 +1,14 @@
+
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building, Calendar, MapPin } from "lucide-react";
+import { Building, Calendar, MapPin, Award } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useInView } from "@/lib/animations";
 import { 
-  timelineCardVariants, 
-  timelinePathVariants, 
-  timelineDotVariants,
   staggerContainer,
   fadeUpVariants,
+  scaleInVariants,
   getReducedMotionVariants 
 } from "@/lib/animations";
 
@@ -43,6 +42,7 @@ export default function ExperienceSection() {
         "Docker",
         "GitHub Actions",
       ],
+      highlight: "current",
     },
     {
       title: "Senior Software Developer",
@@ -67,6 +67,7 @@ export default function ExperienceSection() {
         "PHP",
         "Bootstrap",
       ],
+      highlight: "senior",
     },
     {
       title: "Software Developer Executive",
@@ -83,6 +84,7 @@ export default function ExperienceSection() {
         "Managed Vtiger CRM reducing operational overhead by 25%",
       ],
       technologies: ["TypeScript", "React.js", "ES6+", "Vtiger CRM"],
+      highlight: "executive",
     },
     {
       title: "Software Developer Intern",
@@ -99,23 +101,52 @@ export default function ExperienceSection() {
         "Delivered 40% reduction in manual update time for customer management",
       ],
       technologies: ["TypeScript", "Flask", "Python", "PostgreSQL", "Power BI"],
+      highlight: "internship",
     },
   ];
 
   // Get variants based on motion preferences
   const headerVariants = prefersReducedMotion ? getReducedMotionVariants(staggerContainer) : staggerContainer;
-  const cardVariants = prefersReducedMotion ? getReducedMotionVariants(timelineCardVariants) : timelineCardVariants;
-  const pathVariants = prefersReducedMotion ? getReducedMotionVariants(timelinePathVariants) : timelinePathVariants;
-  const dotVariants = prefersReducedMotion ? getReducedMotionVariants(timelineDotVariants) : timelineDotVariants;
+  const cardVariants = prefersReducedMotion ? getReducedMotionVariants(scaleInVariants) : scaleInVariants;
+
+  const getHighlightColor = (highlight: string) => {
+    switch (highlight) {
+      case 'current':
+        return 'border-green-500/50 bg-green-50/50 dark:bg-green-950/20';
+      case 'senior':
+        return 'border-blue-500/50 bg-blue-50/50 dark:bg-blue-950/20';
+      case 'executive':
+        return 'border-purple-500/50 bg-purple-50/50 dark:bg-purple-950/20';
+      case 'internship':
+        return 'border-orange-500/50 bg-orange-50/50 dark:bg-orange-950/20';
+      default:
+        return 'border-border';
+    }
+  };
+
+  const getHighlightBadge = (highlight: string) => {
+    switch (highlight) {
+      case 'current':
+        return <Badge variant="default" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">Current</Badge>;
+      case 'senior':
+        return <Badge variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">Senior Role</Badge>;
+      case 'executive':
+        return <Badge variant="secondary" className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100">Executive</Badge>;
+      case 'internship':
+        return <Badge variant="outline" className="border-orange-500 text-orange-700 dark:text-orange-300">Internship</Badge>;
+      default:
+        return null;
+    }
+  };
 
   return (
     <motion.section 
       id="experience" 
-      className="py-24 bg-muted/30 relative"
+      className="py-24 bg-background relative"
       ref={ref}
     >
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div 
             className="text-center mb-16"
             initial="hidden"
@@ -136,126 +167,133 @@ export default function ExperienceSection() {
             </motion.p>
           </motion.div>
 
-          <div className="relative">
-            {/* Timeline line - hidden on mobile for simplicity */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px">
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {experiences.map((exp, index) => (
               <motion.div
-                className="w-full bg-gradient-to-b from-primary to-primary/20"
-                style={{ height: '100%' }}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                variants={pathVariants}
-              />
-            </div>
-
-            <div className="space-y-12 md:space-y-16">
-              {experiences.map((exp, index) => {
-                const isEven = index % 2 === 0;
-                const direction = isEven ? 'right' : 'left';
-                
-                return (
-                  <motion.div
-                    key={index}
-                    className={`relative md:w-1/2 ${isEven ? 'md:ml-auto md:pl-8' : 'md:mr-auto md:pr-8'}`}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={cardVariants}
-                    custom={prefersReducedMotion ? undefined : direction}
-                  >
-                    {/* Timeline dot - hidden on mobile */}
-                    <motion.div
-                      className={`hidden md:block absolute top-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg ${
-                        isEven ? '-left-2' : '-right-2'
-                      }`}
-                      initial="hidden"
-                      animate={isInView ? "visible" : "hidden"}
-                      variants={dotVariants}
-                      custom={index}
-                    />
-                    
-                    <motion.div
-                      whileHover={prefersReducedMotion ? {} : { 
-                        scale: 1.02,
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      <Card
-                        className="p-8 hover-elevate transition-all duration-300 shadow-lg"
-                        data-testid={`card-experience-${index}`}
-                      >
-                        <div className="space-y-6">
-                          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                            <div className="space-y-2">
-                              <h3 className="text-2xl font-bold">{exp.title}</h3>
-                              <div className="flex items-center gap-2 text-muted-foreground">
-                                <Building className="w-4 h-4" />
-                                <span className="font-medium">{exp.company}</span>
-                                <span>•</span>
-                                <Badge variant="outline">{exp.type}</Badge>
-                              </div>
-                            </div>
-
-                            <div className="flex flex-col lg:items-end gap-2">
-                              <div className="flex items-center gap-2 text-muted-foreground">
-                                <Calendar className="w-4 h-4" />
-                                <span>{exp.period}</span>
-                              </div>
-                            </div>
+                key={index}
+                variants={cardVariants}
+                whileHover={prefersReducedMotion ? {} : { 
+                  y: -8,
+                  transition: { duration: 0.3 }
+                }}
+                className="h-full"
+              >
+                <Card
+                  className={`p-8 h-full hover:shadow-xl transition-all duration-300 border-2 ${getHighlightColor(exp.highlight)}`}
+                  data-testid={`card-experience-${index}`}
+                >
+                  <div className="space-y-6 h-full flex flex-col">
+                    {/* Header */}
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="space-y-2 flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h3 className="text-2xl font-bold">{exp.title}</h3>
+                            {getHighlightBadge(exp.highlight)}
                           </div>
-
-                          <p className="text-lg font-medium text-primary">
-                            {exp.description}
-                          </p>
-
-                          <div className="space-y-4">
-                            <h4 className="font-semibold">Key Achievements:</h4>
-                            <motion.ul 
-                              className="grid md:grid-cols-2 gap-2"
-                              variants={staggerContainer}
-                              initial="hidden"
-                              animate={isInView ? "visible" : "hidden"}
-                            >
-                              {exp.achievements.map((achievement, achIndex) => (
-                                <motion.li
-                                  key={achIndex}
-                                  className="flex items-start gap-2 text-sm text-muted-foreground"
-                                  variants={fadeUpVariants}
-                                >
-                                  <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                                  <span>{achievement}</span>
-                                </motion.li>
-                              ))}
-                            </motion.ul>
-                          </div>
-
-                          <div className="space-y-2">
-                            <h4 className="font-semibold">Technologies Used:</h4>
-                            <motion.div 
-                              className="flex flex-wrap gap-2"
-                              variants={staggerContainer}
-                              initial="hidden"
-                              animate={isInView ? "visible" : "hidden"}
-                            >
-                              {exp.technologies.map((tech) => (
-                                <motion.div key={tech} variants={fadeUpVariants}>
-                                  <Badge
-                                    variant="secondary"
-                                    data-testid={`badge-exp-tech-${tech.toLowerCase().replace(".", "")}`}
-                                  >
-                                    {tech}
-                                  </Badge>
-                                </motion.div>
-                              ))}
-                            </motion.div>
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <Building className="w-4 h-4" />
+                            <span className="font-medium">{exp.company}</span>
                           </div>
                         </div>
-                      </Card>
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+                        <Badge variant="outline" className="whitespace-nowrap">{exp.type}</Badge>
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <span>{exp.period}</span>
+                        </div>
+                        <span className="hidden sm:inline">•</span>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4" />
+                          <span>{exp.location}</span>
+                        </div>
+                      </div>
+
+                      <p className="text-lg font-medium text-primary">
+                        {exp.description}
+                      </p>
+                    </div>
+
+                    {/* Achievements */}
+                    <div className="space-y-4 flex-1">
+                      <div className="flex items-center gap-2">
+                        <Award className="w-4 h-4 text-primary" />
+                        <h4 className="font-semibold">Key Achievements</h4>
+                      </div>
+                      <ul className="space-y-2">
+                        {exp.achievements.slice(0, 4).map((achievement, achIndex) => (
+                          <li
+                            key={achIndex}
+                            className="flex items-start gap-3 text-sm text-muted-foreground"
+                          >
+                            <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                        {exp.achievements.length > 4 && (
+                          <li className="text-sm text-muted-foreground/70 italic">
+                            +{exp.achievements.length - 4} more achievements
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+
+                    {/* Technologies */}
+                    <div className="space-y-3 mt-auto">
+                      <h4 className="font-semibold text-sm">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.technologies.map((tech) => (
+                          <Badge
+                            key={tech}
+                            variant="secondary"
+                            className="text-xs"
+                            data-testid={`badge-exp-tech-${tech.toLowerCase().replace(".", "")}`}
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Experience Summary */}
+          <motion.div
+            className="mt-16 text-center"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeUpVariants}
+          >
+            <Card className="p-8 bg-primary/5 border-primary/20">
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                variants={staggerContainer}
+              >
+                <motion.div variants={fadeUpVariants} className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">4+</div>
+                  <div className="text-muted-foreground">Years of Experience</div>
+                </motion.div>
+                <motion.div variants={fadeUpVariants} className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">100+</div>
+                  <div className="text-muted-foreground">Projects Completed</div>
+                </motion.div>
+                <motion.div variants={fadeUpVariants} className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">15+</div>
+                  <div className="text-muted-foreground">Technologies Mastered</div>
+                </motion.div>
+              </motion.div>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </motion.section>
