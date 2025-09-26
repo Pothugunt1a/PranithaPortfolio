@@ -92,10 +92,7 @@ export default function ContactSection() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card className="p-6 space-y-4 hover-elevate border-2 border-primary/10">
-              <div className="text-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
+              <div className="text-center mb-4">
                 <h3 className="text-xl font-bold">Get In Touch</h3>
                 <p className="text-muted-foreground mt-1">Let's connect and discuss opportunities</p>
               </div>
@@ -153,19 +150,16 @@ export default function ContactSection() {
             </Card>
 
             <Card className="p-6 space-y-4 hover-elevate border-2 border-primary/10">
-              <div className="text-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-primary/80 to-primary rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Settings className="w-6 h-6 text-white" />
-                </div>
+              <div className="text-center mb-4">
                 <h3 className="text-xl font-bold">Let's Work Together</h3>
                 <p className="text-muted-foreground mt-1">
                   I'm passionate about building scalable applications and solving complex 
                   problems through code. Whether you're looking for:
                 </p>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {skills.map((skill, index) => (
-                  <div key={index} className="group p-3 rounded-lg hover:bg-muted/50 transition-all duration-200">
+                  <div key={index} className="group p-2 rounded-lg hover:bg-muted/50 transition-all duration-200">
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
                         <skill.icon className="w-4 h-4 text-primary" />
@@ -178,7 +172,7 @@ export default function ContactSection() {
                   </div>
                 ))}
               </div>
-              <div className="pt-3 border-t border-border/50">
+              <div className="pt-2 border-t border-border/50">
                 <p className="text-center text-muted-foreground font-medium">
                   I'd love to discuss how my expertise can contribute to your team's success.
                 </p>
