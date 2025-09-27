@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { headerVariants, staggerContainer, fadeUpVariants, getReducedMotionVariants } from "@/lib/animations";
+import logoPath from "@assets/ChatGPT Image Sep 26, 2025, 08_47_28 PM_1758937680951.png";
 
 interface HeaderProps {
   scrollToSection: (section: string) => void;
@@ -36,10 +37,15 @@ export default function Header({ scrollToSection }: HeaderProps) {
             <Button
               variant="ghost"
               onClick={() => scrollToSection('hero')}
-              className="text-xl font-bold hover-elevate transition-all duration-300 hover:scale-105"
+              className="p-2 hover-elevate transition-all duration-300 hover:scale-105"
               data-testid="button-logo"
+              aria-label="Go to hero section"
             >
-              Pranitha Pothuguntla
+              <img 
+                src={logoPath} 
+                alt="PP Logo" 
+                className="h-10 w-10 object-contain"
+              />
             </Button>
           </motion.div>
           
