@@ -47,14 +47,14 @@ export default function Header({ scrollToSection }: HeaderProps) {
             <Button
               variant="ghost"
               onClick={() => scrollToSection("hero")}
-              className="p-2 hover-elevate transition-all duration-300 hover:scale-105"
+              className="p-3"
               data-testid="button-logo"
               aria-label="Go to hero section"
             >
               <img
                 src="/logo.png"
                 alt="PP Logo"
-                className="h-14 w-14 object-contain"
+                className="h-20 w-20 object-contain"
               />
             </Button>
           </motion.div>
