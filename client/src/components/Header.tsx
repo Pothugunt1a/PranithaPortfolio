@@ -8,7 +8,7 @@ import {
   fadeUpVariants,
   getReducedMotionVariants,
 } from "@/lib/animations";
-import logoPath from "@assets/ChatGPT Image Sep 26, 2025, 08_47_28 PM_1758937680951.png";
+import logoPath from "/client/public/logo.png";
 
 interface HeaderProps {
   scrollToSection: (section: string) => void;
