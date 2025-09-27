@@ -44,19 +44,12 @@ export default function Header({ scrollToSection }: HeaderProps) {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <motion.div variants={itemVariants}>
-            <Button
-              variant="ghost"
-              onClick={() => scrollToSection("hero")}
-              className="p-2 hover-elevate transition-all duration-300 hover:scale-105"
-              data-testid="button-logo"
-              aria-label="Go to hero section"
-            >
-              <img
-                src="/logo.png"
-                alt="PP Logo"
-                className="h-10 w-10 object-contain"
-              />
-            </Button>
+            <img
+              src="/logo.png"
+              alt="PP Logo"
+              className="h-10 w-10 object-contain"
+              data-testid="logo-image"
+            />
           </motion.div>
 
           <motion.nav
