@@ -8,7 +8,6 @@ import {
   fadeUpVariants,
   getReducedMotionVariants,
 } from "@/lib/animations";
-import logoPath from "/client/public/logo.png";
 
 interface HeaderProps {
   scrollToSection: (section: string) => void;
@@ -53,7 +52,7 @@ export default function Header({ scrollToSection }: HeaderProps) {
               aria-label="Go to hero section"
             >
               <img
-                src={logoPath}
+                src="/logo.png"
                 alt="PP Logo"
                 className="h-10 w-10 object-contain"
               />
